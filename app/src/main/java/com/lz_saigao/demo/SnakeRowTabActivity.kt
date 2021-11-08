@@ -26,7 +26,6 @@ import com.google.accompanist.pager.rememberPagerState
 import com.lz_saigao.snake_tab.SnakeRowTab
 import com.lz_saigao.snake_tab.SnakeScrollTab
 
-@ExperimentalPagerApi
 class SnakeRowTabActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +43,11 @@ class SnakeRowTabActivity : ComponentActivity() {
     }
 
 
+    @OptIn(ExperimentalPagerApi::class)
     @Composable
     fun ShowContent(pagerData: List<String>, tabData: List<String>,tabWidth :Dp,pagerWidth:Int){
         val pagerState = rememberPagerState()
-        val tabWidthPx= with(LocalDensity.current){tabWidth.toPx()}
+
         var tabSelectIndex by remember {
             mutableStateOf(0)
         }

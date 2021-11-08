@@ -22,7 +22,7 @@ import com.lz_saigao.snake_tab.TabAxisAlignment
 
 
 class DemoActivity : ComponentActivity() {
-    @ExperimentalPagerApi
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
