@@ -29,7 +29,7 @@ android {
         kotlinCompilerVersion '1.5.21'
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
         useIR = true
     }
     buildFeatures {
