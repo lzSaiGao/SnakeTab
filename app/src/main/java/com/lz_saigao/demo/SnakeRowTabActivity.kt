@@ -37,17 +37,21 @@ class SnakeRowTabActivity : ComponentActivity() {
                 pagerData.add("${index}--page")
                 tabData.add("tab$index")
             }
-            val pagerWidth = this.resources.displayMetrics.widthPixels
-            ShowContent(pagerData, tabData,200.dp,pagerWidth)
+            val pagerWidth = with(LocalDensity.current){
+                this@SnakeRowTabActivity.resources.displayMetrics.widthPixels.toDp()
+            }
+            ShowContent(pagerData, tabData,pagerWidth,pagerWidth)
         }
     }
 
 
     @OptIn(ExperimentalPagerApi::class)
     @Composable
-    fun ShowContent(pagerData: List<String>, tabData: List<String>,tabWidth :Dp,pagerWidth:Int){
+    fun ShowContent(pagerData: List<String>, tabData: List<String>,tabWidth :Dp,pagerWidth:Dp){
         val pagerState = rememberPagerState()
-
+        val pagerWidthPx = with(LocalDensity.current){
+            pagerWidth.toPx()
+        }
         var tabSelectIndex by remember {
             mutableStateOf(0)
         }
@@ -75,7 +79,7 @@ class SnakeRowTabActivity : ComponentActivity() {
         val nestedScroll = remember {
             object : NestedScrollConnection {
                 override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
-                    indicatorScrollPercentage += available.x / pagerWidth
+                    indicatorScrollPercentage += available.x / pagerWidthPx
                     return Offset.Zero
                 }
             }
